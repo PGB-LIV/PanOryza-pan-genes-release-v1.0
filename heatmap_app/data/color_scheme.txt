@@ -1,0 +1,19 @@
+genome	sample	color	subspecies	color2
+ARC 10497	ARC 10497	#33691E	aromatic	#2E7D32
+N22	N22	#F2B705	aus	#FF822E
+Natel Boro	Natel Boro	#FFDC00	aus	#FF822E
+Khao Yai Guang	Khao Yai Guang	#3f007d	indica	#0003C7
+Larha Mugad	Larha Mugad	#54278f	indica	#0003C7
+Minghui 63	Minghui 63	#6a51a3	indica	#0003C7
+IR64	IR64	#807dba	indica	#0003C7
+Zhenshan 97	Zhenshan 97	#9e9ac8	indica	#0003C7
+PR106	PR106	#bcbddc	indica	#0003C7
+Lima	Lima	#0003C7	indica	#0003C7
+Gobol Sail Balam	Gobol Sail Balam	#7953ff	indica	#0003C7
+Liu Xu	Liu Xu	#2171b5	indica	#0003C7
+Nipponbare(Gramene)	Nipponbare(merged)	#374140	japonica	#374140
+Chao Meo	Chao Meo	#7f2704	japonica	#D90000
+Azucena	Azucena	#a63603	japonica	#D90000
+Ketan Nangka	Ketan Nangka	#d94801	japonica	#D90000
+Nipponbare(MSU)	Nipponbare(merged)	#8C8C8C	japonica	#374140
+Nipponbare(RAPDB)	Nipponbare(merged)	#595959	japonica	#374140
