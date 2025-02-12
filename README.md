@@ -6,17 +6,17 @@ This repository hosts the code for recreating analyses in the PanOryza manuscrip
 ### To reproduce the entire analyses starting with the GET_PANGENES result, prepare various tables and intermediate files to recreate manuscript figures.
 Output of get_pangenes using RPRP (MAGIC-16 accessions) as input gives out the following set of files: 
 
-1) .cluster_list   ---> parsed in tabular format using function [parse_clusters](scripts/parse_clusters.R) --> output table named as "df_merged"
+1) .cluster_list   --> parsed in tabular format using function [parse_clusters](scripts/parse_clusters.R) --> output table named as "df_merged"
 2) .matrix_genes.tr.tab --> read directly as table named "pangene_list"
 3) .matrix.tr.tab 
-4) Individual clusters inside folder 'oryzasativanipponbaremerged' --> *.cds.faa files of clusters used to calculate and summarise clusters and individual protein lengths
-   clusters sequence summary can be created in R using [create_cluster_sum](scripts/create_cluster_sum.R). NOTE: There are several ways to do this using a Linux terminal.
+4) Individual clusters inside folder 'oryzasativanipponbaremerged' --> *.cds.faa files of clusters used to calculate and summarise clusters and individual protein lengths.
+   Clusters sequence summary can be created in R using [create_cluster_sum](scripts/create_cluster_sum.R). NOTE: There are also several ways to do this using a Linux terminal.
    The resulting clusters sequence summary can be further parsed into a dataframe using [read_parse_clusters_summary](scripts/read_parse_clusters_summary.R)
 
 Additional "cluster_merged" named table used at various places, created by combining "pangene_list" and "df_merged"
 
-Interproscan tabular results for magic18 sequences were merged with the cluster files above. Recommended to load the workspace core_workspace.RData in R/Rstudio that will also load these Interproscan results for pan-genes. 
-Else, [core_files.R](scripts/core_files.R) can be used to input all these files needed for downstream analysis. core_workspace.RData can be obtained from ????? zenodo ??? 
+Interproscan tabular results for magic18 protein sequences were merged with the cluster files above. Recommended to load the workspace core_workspace.RData in R/Rstudio that will also load these Interproscan results for pan-genes. 
+Else, [core_files.R](scripts/core_files.R) can be used to read all these files needed for downstream analysis. The core_workspace.RData can be obtained from zenodo
 
 To repoduce the figure-wise analysis, please refer to the [scripts folder](scripts/)
 
