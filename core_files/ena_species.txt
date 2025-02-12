@@ -1,0 +1,17 @@
+species_ena	species
+Oryza_sativa_arc	ARC 10497
+Oryza_sativa_azucena	Azucena
+Oryza_sativa_chaomeo	Chao Meo
+Oryza_sativa_gobolsailbalam	Gobol Sail Balam
+Oryza_sativa_ir64	IR64
+Oryza_sativa	Nipponbare(RAPDB)
+Oryza_sativa_ketannangka	Ketan Nangka
+Oryza_sativa_khaoyaiguang	Khao Yai Guang
+Oryza_sativa_larhamugad	Larha Mugad
+Oryza_sativa_lima	Lima
+Oryza_sativa_liuxu	Liu Xu
+Oryza_sativa_mh63	Minghui 63
+Oryza_sativa_n22	N22
+Oryza_sativa_natelboro	Natel Boro
+Oryza_sativa_pr106	PR106
+Oryza_sativa_zs97	Zhenshan 97

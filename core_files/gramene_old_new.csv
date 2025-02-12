@@ -1,0 +1,19 @@
+old,new,filename,species
+Oszs97.,OsZS97_,Oryza_sativazs97.ZS97RS3.pep.all.fa,Zhenshan 97
+Osmh63.,OsMH63_,Oryza_sativamh63.MH63RS2.pep.all.fa,Minghui 63
+Osir64_,OsIR64_,Oryza_sativair64.OsIR64RS1.pep.all.fa,IR64
+Os127742_,OsPr106_,Oryza_sativa127742.Os127742RS1.pep.all.fa,PR106
+Os132424_,OsGoSa_,Oryza_sativa132424.Os132424RS1.pep.all.fa,Gobol Sail Balam
+Os125619_,OsLaMu_,Oryza_sativa125619.Os125619RS1.pep.all.fa,Larha Mugad
+Os127564_,OsLima_,Oryza_sativa127564.Os127564RS1.pep.all.fa,Lima
+Os127518_,OsKYG_,Oryza_sativa127518.Os127518RS1.pep.all.fa,Khao Yai Guang
+Os125827_,OsLiXu_,Oryza_sativa125827.Os125827RS1.pep.all.fa,Liu Xu
+Osaus.,OsN22_,Oryza_aus.OsN22RS2.pep.all.fa,N22
+Os127652_,OsNaBo_,Oryza_sativa127652.Os127652RS1.pep.all.fa,Natel Boro
+Os117425_,OsARC_,Oryza_sativa117425.Os117425RS1.pep.all.fa,ARC 10497
+Os128077_,OsKeNa_,Oryza_sativa128077.Os128077RS1.pep.all.fa,Ketan Nangka
+Os132278_,OsCMeo_,Oryza_sativa132278.Os132278RS1.pep.all.fa,Chao Meo
+Osazucena_,OsAzu_,Oryza_sativaazucena.AzucenaRS1.pep.all.fa,Azucena
+Osativa.,OsNip_,Osnip_oryza_sativa.evd.protein.fa,Nipponbare(Gramene)
+Os,Os,IRGSP-1.0_protein_2023-03-15.fa,Nipponbare(RAPDB)
+LOC,LOC,all_msu.fa,Nipponbare(MSU)
