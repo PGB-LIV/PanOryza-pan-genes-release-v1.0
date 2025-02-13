@@ -5,6 +5,8 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(cowplot))
 suppressMessages(library(ggpubr))
 
+load(file = "core_workspace.RData") #  load the core set of files
+
 MSA_OsNip <- read.delim("core_files/magic clusters - magic15MSA1stisof.OsNip.tsv")
 log.quality.cDNA.fix <- read.delim("core_files/log.quality.cDNA.fix.tsv", header=FALSE)
 pep_global_dist.max <- read.delim("core_files/pep_global_dist.max.tsv", header=FALSE)
