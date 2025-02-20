@@ -1,7 +1,7 @@
 # PanOryza-pan-genes-release-v1.0
 
 
-This repository hosts the code for recreating analyses in the PanOryza manuscript. Code for GET_PANGENES available from: <https://github.com/Ensembl/plant-scripts/blob/master/pangenes/> The input files( .fasta and .gff format) for running GET_PANGENES are available from zenodo (10.5281/zenodo.14772953). Else, the output files for Os4530.POR.1 (version 1.0) are also available at the zenodo repository and can be used for various downstream analyses of the pan-genes using the code available here.
+This repository hosts the code for recreating analyses in the PanOryza manuscript. Code for GET_PANGENES available from: <https://github.com/Ensembl/plant-scripts/blob/master/pangenes/> The input files( .fasta and .gff format) for running GET_PANGENES are available from zenodo ([https://zenodo.org/records/14772953](https://zenodo.org/records/14772953)). Else, the output files for Os4530.POR.1 (version 1.0) are also available at the zenodo repository and can be used for various downstream analyses of the pan-genes using the code available here.
 
 ### To reproduce the entire analyses starting with the GET_PANGENES result, prepare various tables and intermediate files to recreate manuscript figures.
 Output of get_pangenes using RPRP (MAGIC-16 accessions) as input gives out the following set of files: 
@@ -15,8 +15,8 @@ Output of get_pangenes using RPRP (MAGIC-16 accessions) as input gives out the f
 
 Additional "cluster_merged" named table used at various places, created by combining "pangene_list" and "df_merged"
 
-Interproscan tabular results for magic18 protein sequences were merged with the cluster files above. Recommended to load the workspace core_workspace.RData in R/Rstudio that will also load these Interproscan results for pan-genes. 
-Else, [core_files.R](scripts/core_files.R) can be used to read all these files needed for downstream analysis. The core_workspace.RData can be obtained from zenodo
+Interproscan tabular results for magic18 protein sequences were merged with the cluster files above. Recommended to load the workspace core_workspace.RData in R/Rstudio that will also load these Interproscan results for pan-genes (Available at [zenodo](https://zenodo.org/records/14772953)).
+Else, [core_files.R](scripts/core_files.R) can be used to read all these files needed for downstream analysis.
 
 To repoduce the figure-wise analysis, please refer to the [scripts folder](scripts/)
 
