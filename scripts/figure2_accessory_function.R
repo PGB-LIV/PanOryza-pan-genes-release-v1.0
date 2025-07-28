@@ -27,7 +27,16 @@ add_significance_bar <- function(plot, df, x_arg, y_arg, pos_a, pos_b , vjust , 
   model <- aov(df[[y_arg]] ~ df[[x_arg]], df)
   tukey_res <- TukeyHSD(model)
   
-  pv_core <- ifelse(tukey_res$`df[[x_arg]]`["core-cloud",][["p adj"]] == 0 , "0", format(round(tukey_res$`df[[x_arg]]`["core-cloud",][["p adj"]],3)))
+  # Get comparison name
+  comp_names <- rownames(tukey_res$`df[[x_arg]]`)
+ 
+  # find "core-cloud" comparison
+  comp_to_use <- ifelse("core-cloud" %in% comp_names , "core-cloud" ,  
+                        ifelse("cloud-core" %in% comp_names , "cloud-core", "NA"))
+ 
+  pval <- tukey_res$`df[[x_arg]]`[comp_to_use,][["p adj"]]
+
+  pv_core <- ifelse(pval < 0.0001, " < 0.0001" , format(round(pval, 3)))
   
   vjust = ifelse(is.na(vjust) , (2.0 * (pos_a + pos_b /2))/100 , vjust)
   vjust_text = ifelse(is.na(vjust_text), (3.0 * (pos_a + pos_b /2))/100 , vjust_text )
