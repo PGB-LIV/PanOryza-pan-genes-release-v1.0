@@ -1,0 +1,178 @@
+---
+title: "Genespace"
+author: "Eshan Sharma"
+date: "2025-07-28"
+output: html_document
+---
+
+GENESPACE run on sequences from PanOryza-pan-genes-release-v1.0.
+
+#### 1. Run GENESPACE on .faa files from pangene clusters
+
+Combine a very large number of .faa files in the POR1 directory into one file, then split the file into different files based on genome
+
+```{bash}
+
+#!/bin/bash
+
+input_dir="./Os4530.POR.1/oryzasativanipponbaremerged/"
+
+find "$input_dir" -type f -name "*.cds.faa" -print0 | xargs -0 cat > POR1_combined.faa
+
+seqkit split POR1_combined.faa -i --id-regexp '\[([^\]]+)\]' -O ./split_POR_faa_genomes
+
+
+# edit the split files header to keep only ids
+# Process each file and save the output to a new file
+
+cd split_POR_faa_genomes
+for file in *.faa; do
+seqkit replace -p 'transcript:' -r '' "$file" | seqkit replace -p ' .*' -r '' > "${file%.faa}_ids.faa"
+done
+
+#rename file names for genespace run
+
+find ./ -type f -name "*.faa" -exec rename 'POR1_combined.part_' '' {} \;
+
+find ./ -type f -name "*.faa" -exec rename '_ids' '' {} \;
+
+# Get header from combined fasta to create .bed files
+
+grep '>' POR1_combined.faa | sed 's/>//g' > POR1_combined_headers.txt
+
+```
+
+```{r}
+
+# in R
+POR1_combined_headers <- read.table("./Os4530.POR.1/POR1_combined_headers.txt", quote="\"", comment.char="")
+
+# replace (+) or (-) in V4 with empty string
+POR1_combined_headers$V3 <- gsub("\\(-\\)", "", POR1_combined_headers$V3)
+
+POR1_combined_headers$V3 <- gsub("\\(\\+\\)", "", POR1_combined_headers$V3)
+
+
+POR1_combined_headers <- POR1_combined_headers %>%
+  separate(V3, into = c("chr", "rest"), sep = ":") %>%
+  separate(rest, into = c("start", "end"), sep = "-", convert = TRUE)
+
+POR1_combined_headers <- POR1_combined_headers %>% select(-V2)
+
+POR1_combined_headers$V4 <- gsub("\\[|\\]", "", POR1_combined_headers$V4)
+
+POR1_combined_headers_list <- split(POR1_combined_headers, POR1_combined_headers$V4)
+
+POR1_combined_headers_list <- lapply(POR1_combined_headers_list, function(df) {
+  df <- df %>% select(-V4) %>% select(chr, start, end, V1) %>% arrange(chr)
+  df$V1 <- str_replace_all(df$V1, "transcript:" , "")
+  return(df)
+})
+
+
+for (i in seq_along(POR1_combined_headers_list)) {
+  file_name <- paste0("./Os4530.POR.1/bed/", names(POR1_combined_headers_list)[i], ".bed")
+  fwrite(POR1_combined_headers_list[[i]], file = file_name, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+}
+
+```
+
+#### 2. For Genespace: Put all peptide .fa in folder named "peptide" , .bed files in folder named "bed"
+
+```{r}
+# Run genespace in R
+library(GENESPACE)
+
+gpar <- init_genespace(wd = "./Os4530.POR.1/genespace_res", path2mcscanx = "/home/esharma/MCScanX")
+out <- run_genespace(gsParam = gpar)
+```
+
+```{bash}
+#!/bin/bash
+#SBATCH --job-name=R    # Job name
+#SBATCH --mail-type=ALL         # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=eshan.sharma@liverpool.ac.uk     
+#SBATCH -c 32 # number of cores
+#SBATCH -t 7-00:00:00
+#SBATCH -o slurm.%N.%j.out # STDOUT
+#SBATCH -e slurm.%N.%j.err # STDERR
+
+module purge
+source /home/esharma/miniconda3/etc/profile.d/conda.sh  # Adjust the path to your Conda installation if needed
+
+conda activate base
+conda activate orthofinder
+
+orthofinder -h #test
+
+module load R/4.4.0
+
+Rscript ./Os4530.POR.1/genespace.R
+
+conda deactivate
+```
+
+#### 3. Post Genespace: Load results and generate coloured riparian plot
+
+```{r}
+
+# using genespace results from run on the pangenes clusters
+
+library(GENESPACE)
+
+load('./Os4530.POR.1/genespace_res/results/gsParams.rda', verbose = TRUE)
+
+plot_riparian(
+  gsParam = gsParam,
+  refGenome = "oryza_sativa_nipponbaremerged", 
+  useRegions = FALSE )
+
+ggthemes <- ggplot2::theme(
+  panel.background = ggplot2::element_rect(fill = "white"))
+
+genomes2run <- c("oryza_sativa_ZS97",
+                 "oryza_sativa_arc",
+                 "oryza_sativa_azucena",
+                 "oryza_sativa_chaomeo",
+                 "oryza_sativa_gobolsailbalam",
+                 "oryza_sativa_ir64",
+                 "oryza_sativa_ketannangka",
+                 "oryza_sativa_khaoyaiguang",
+                 "oryza_sativa_larhamugad",
+                 "oryza_sativa_lima",
+                 "oryza_sativa_liuxu_chr",
+                 "oryza_sativa_mh63",
+                 "oryza_sativa_n22",
+                 "oryza_sativa_natelboro",
+                 "oryza_sativa_pr106",
+                 "oryza_sativa_nipponbaremerged")
+
+color_scheme <- data.frame(genome = genomes2run, color = c("#9e9ac8" , "#33691E" , "#a63603" ,  "#7f2704" , "#7953ff" , "#807dba" , "#d94801" ,
+                                                           "#3f007d" , "#54278f" , "#0003C7" , "#2171b5" , "#6a51a3" , "#F2B705" , "#FFDC00" , "#bcbddc" , "#374140"))
+
+customPal <- colorRampPalette(color_scheme$color)
+
+plot_riparian(
+  gsParam = gsParam, 
+  palette = customPal,
+  braidAlpha = .6,
+  chrFill = "lightgrey",
+  addThemes = ggthemes , 
+  inversionColor = "black" , 
+  useRegions = FALSE ,
+  pdfFile = "./plots/riparian_plot_coloured_panoryza.pdf")
+
+
+
+png("./plots/riparian_plot_coloured_panoryza.png", width=8,height=11, res = 600 , units = "in" , pointsize = 12)
+plot_riparian(
+  gsParam = gsParam, 
+  palette = customPal,
+  braidAlpha = .6,
+  chrFill = "lightgrey",
+  addThemes = ggthemes , 
+  inversionColor = "black" , 
+  useRegions = FALSE )
+
+dev.off()
+```
