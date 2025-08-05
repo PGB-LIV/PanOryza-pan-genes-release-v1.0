@@ -1,4 +1,5 @@
-# Figure S4 and S5
+# Figure S6 and S7
+# NAC and NB-ARC pangenes on a heatmap
 
 suppressMessages(library(tidyverse))
 suppressMessages(library(cowplot))
@@ -16,7 +17,7 @@ color_scheme <- read.delim("core_files/color_scheme.txt")
 suppressMessages(source("scripts/add_consensus.R"))
 
 
-# Fig S4
+# Supplementary Fig S6
 # 1. NAC family
 
 NAC_total_m18_clusters <- read.delim("core_files/NAC_total_m18_clusters.tsv")
@@ -85,7 +86,7 @@ ggarrange(p_1_15, p_16, ncol = 2, common.legend = T)
 
 
 
-# Supplementary Figure S5
+# Supplementary Figure S7
 
 # other family : NB-ARC
 
