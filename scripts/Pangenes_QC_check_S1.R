@@ -1,4 +1,4 @@
-# Supplement Fig 1
+# Supplementary Fig S1
 ## check QC of pan-genes based on the output of get_pangenes pipeline and all 3 Nipponbare annotations therein. 
 
 suppressMessages(library(tidyverse))
