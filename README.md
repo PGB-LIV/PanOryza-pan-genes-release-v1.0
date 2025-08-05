@@ -28,4 +28,4 @@ To repoduce the figure-wise analysis, please refer to the [scripts folder](scrip
 
 - [Figure 4](scripts/Figure_4.R)
 
-- [Figure 5 Shiny app](heatmap_app/)
+- [Shiny app](heatmap_app/)
