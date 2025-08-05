@@ -1,6 +1,6 @@
 
-# Extended data
-# Supplementary figure S3 
+# GO enrichment analysis
+# Supplementary figure S5 
 
 # recommended to run analyses in Fig 4 before plotting this one
 
