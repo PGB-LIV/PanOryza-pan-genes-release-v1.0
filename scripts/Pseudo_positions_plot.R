@@ -1,5 +1,5 @@
 
-# Supplementary Figure S2
+# Pseudo positions plot 
 
 # Load Libraries
 suppressMessages(library(tidyverse))
@@ -37,7 +37,7 @@ colourCount = length(unique(melted_chr1$variable))
 #plot
 
 # uncomment below to export image
-#png("./pan_gene_dotplots_070225.png", height  = 8000, width = 8000, res = 600)
+#png("./pan_gene_dotplots.png", height  = 8000, width = 8000, res = 600)
 
 options(scipen = 999)
 
