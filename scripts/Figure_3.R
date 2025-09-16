@@ -92,7 +92,7 @@ plot_evidence <- ggplot(peptide_count_summary_1st_entry, aes(x=reorder(genome, d
 
 # uncomment to export figure
 # svg("figure3a.svg", width=7,height=5.5, pointsize = 10)
-# plot_evidence_new
+# plot_evidence 
 # dev.off()
 
 
@@ -220,7 +220,7 @@ plot_aed <- plot_aed +
 
 
 plots_grid <- ggarrange(
-  plot_evidence_new,pep_plot_occupancy, peptide_count_plot2, plot_aed,
+  plot_evidence,pep_plot_occupancy, peptide_count_plot2, plot_aed,
   labels = c("A", "B", "C", "D") ,
   ncol=2,
   nrow=2,
