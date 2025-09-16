@@ -86,7 +86,7 @@ matching_counts_summary <- matching_counts_summary %>% mutate(similarity = (matc
 # Plot A
 gp_por_density_plot <- ggplot(matching_counts_summary, aes(x = similarity )) +
   geom_histogram(bins = 50, position = "identity", alpha = 0.5, fill = "darkgrey", color = "black") + theme_cowplot() + 
-  labs(x = "Similarity in %", y = "Pangene counts", fill = "", title = "genespace vs POR")  +
+  labs(x = "Similarity in %", y = "Pangene counts", fill = "", title = "GENESPACE vs POR")  +
   scale_fill_manual(values = c("red", "blue" ))
 
 
@@ -169,10 +169,10 @@ matching_counts_nb_arc_sum <- matching_counts_nb_arc %>%
 
 # recode GP_size as GP and POR_size as POR
 matching_counts_NAC_sum$type <- recode(matching_counts_NAC_sum$type, 
-                                       GP_size = "GP", 
+                                       GP_size = "GS", 
                                        POR_size = "POR")
 matching_counts_nb_arc_sum$type <- recode(matching_counts_nb_arc_sum$type, 
-                                          GP_size = "GP", 
+                                          GP_size = "GS", 
                                           POR_size = "POR")
 
 
@@ -238,4 +238,5 @@ matching_counts_NAC_sum %>% group_by(type) %>% summarise(median_val = median(siz
                                                          IQR = IQR(size))
 
 matching_counts_NAC_sum %>% filter(size == 1) %>% group_by(type) %>% summarise(counts = n_distinct(Pan.id))
+
 
