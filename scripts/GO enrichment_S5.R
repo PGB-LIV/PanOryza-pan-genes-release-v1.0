@@ -32,9 +32,9 @@ mean_occupancy_interpro_go <- mean_occupancy_interpro_go %>% filter(count_pangen
 
 highly_variable = mean_occupancy_interpro_go %>% filter(mean_occupancy < 10)
 
-partially_variable <-  mean_occupancy_interpro_go %>% filter(mean_occupancy > 10 & mean_occupancy < 15)
+partially_variable <-  mean_occupancy_interpro_go %>% filter(mean_occupancy >= 10 & mean_occupancy < 15)
 
-completely_invariable <- mean_occupancy_interpro_go %>% filter(mean_occupancy > 15)
+completely_invariable <- mean_occupancy_interpro_go %>% filter(mean_occupancy >= 15)
 
 
 # get pan-genes with these domains
